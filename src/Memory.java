@@ -14,20 +14,26 @@ public class Memory {
 
     public void initializeMemory(String fileName) {
         try {
-            FileReader fileReader = new FileReader("sample.txt");
+            FileReader fileReader = new FileReader(fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
             int count = 0;
             while ((line = bufferedReader.readLine()) != null) {
                 /* if condition to add commands at specified locations*/
-                if(line.isEmpty())
+                if (line.isEmpty())
                     continue;
                 if (line.trim().charAt(0) == '.') {
                     count = Integer.parseInt(line.replace('.', ' ').split("//")[0].trim());
                     continue;
                 }
-                Integer command = Integer.parseInt(line.split("//")[0].trim());
-                this.memoryArr[count++] = command;
+                String parseVal=line.split("//")[0].trim();
+                if(!parseVal.isEmpty()) {
+                    Integer command = Integer.parseInt(parseVal);
+                    this.memoryArr[count++] = command;
+                }
+                else {
+                    continue;
+                }
             }
             fileReader.close();
         } catch (IOException e) {
@@ -40,10 +46,10 @@ public class Memory {
         System.out.println(memoryArr[addr]);
     }
 
-    public boolean write(int addr, int data) {
-        System.out.println("Writing data:" + data + " at address:" + addr);
+
+    public void write(int addr, int data) {
+        // System.out.println("Writing data:" + data + " at address:" + addr);
         memoryArr[addr] = data;
-        return true;
     }
 
     public static void main(String args[]) {
@@ -54,12 +60,18 @@ public class Memory {
         } else {
             Scanner sc = new Scanner(System.in);
             String s = "";
-            while (sc.hasNext() && !s.equals("50")) {
+            while (sc.hasNext() /*&& !s.equals("50")*/) {
                 s = sc.nextLine();
                 if (s.equals("0"))
                     memory.initializeMemory(args[0]);
-                //for read write
-                memory.read(Integer.parseInt(s));
+                if (s.contains("w-")) {
+                    String[] arr = s.split("-");
+                    memory.write(Integer.parseInt(arr[1]), Integer.parseInt(arr[2]));
+                    //memory.read(Integer.parseInt(arr[2])+1);
+                } else {
+                    //for read write
+                    memory.read(Integer.parseInt(s));
+                }
             }
         }
 
