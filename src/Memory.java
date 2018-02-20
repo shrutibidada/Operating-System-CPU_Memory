@@ -2,7 +2,11 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-//TODO:   Memory will initialize itself by reading a program file.
+/*
+* Created By: Shruti Bidada
+* Net ID: sgb160130
+* */
+
 public class Memory {
     int[] memoryArr;
     Logger log;
@@ -19,19 +23,17 @@ public class Memory {
             String line;
             int count = 0;
             while ((line = bufferedReader.readLine()) != null) {
-                /* if condition to add commands at specified locations*/
                 if (line.isEmpty())
                     continue;
                 if (line.trim().charAt(0) == '.') {
                     count = Integer.parseInt(line.replace('.', ' ').split("//")[0].trim());
                     continue;
                 }
-                String parseVal=line.split("//")[0].trim();
-                if(!parseVal.isEmpty()) {
+                String parseVal = line.split("//")[0].trim();
+                if (!parseVal.isEmpty()) {
                     Integer command = Integer.parseInt(parseVal);
                     this.memoryArr[count++] = command;
-                }
-                else {
+                } else {
                     continue;
                 }
             }
@@ -48,7 +50,6 @@ public class Memory {
 
 
     public void write(int addr, int data) {
-        // System.out.println("Writing data:" + data + " at address:" + addr);
         memoryArr[addr] = data;
     }
 
@@ -60,14 +61,13 @@ public class Memory {
         } else {
             Scanner sc = new Scanner(System.in);
             String s = "";
-            while (sc.hasNext() /*&& !s.equals("50")*/) {
+            while (sc.hasNext()) {
                 s = sc.nextLine();
                 if (s.equals("0"))
                     memory.initializeMemory(args[0]);
                 if (s.contains("w-")) {
                     String[] arr = s.split("-");
                     memory.write(Integer.parseInt(arr[1]), Integer.parseInt(arr[2]));
-                    //memory.read(Integer.parseInt(arr[2])+1);
                 } else {
                     //for read write
                     memory.read(Integer.parseInt(s));
