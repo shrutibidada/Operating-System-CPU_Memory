@@ -1,0 +1,98 @@
+ //Print the christmas tree for randomly generated lines
+.0
+8 	// genetate a random number n
+7 	// store at address 700
+850
+2 	//Load n from data
+850
+9 	// print the no of lines
+1
+14 	//CopyToX
+1 	// load the ascii value for new line
+10
+9 	// print new line
+2
+2 	//Load n from data
+850
+14 	//CopyToX
+26 	// DecX  - X has no of spaces
+1 	// Load 1
+1
+16 	//Y has initial no of *'s
+15 	//copy no of spaces or X
+27 	//push
+23
+46 	//GOTO:print n space
+17 	//copy no of starts or Y
+27
+23
+66 	//GOTO: print n no of *'s
+28 	//get the old X and print again
+23
+46 	//GOTO print n no of space
+23
+86 	//GOTO print new line
+26
+15 	//CopyFromX
+27 	//Push
+17 	//CopyFromY
+14 	//CopyToX
+25 	//IncX
+25
+15
+16 	//CopyToY
+28 	//Pop
+14 	//CopyToX
+22 	//JumpIfNotZero
+19 	// GOTO :printrow
+50 	//End
+27 	//Push AC
+15 	//CopyFromX
+27
+1 	// Load 3
+3
+14
+6 	// LoadSpX
+14
+1 	//spaces to load the loop
+32
+9 	// Output char
+2
+26 	//DecX
+15
+22
+54 	//GOTO :Loop
+28   	//Pop AC
+14   	//CopyToX
+28   	//Pop AC
+24   	//Return
+27 	//print n *
+15   	//CopyFromX
+27   	//Push X
+1 	//Load 1
+3
+14   	//CopyToX
+6   	//LoadSpX
+14   	//CopyToX
+1 	//Load ' '    :Loop
+42
+9   	//Output char
+2
+26   	//DecX
+15   	//CopyFromX
+22   	//JumpIfNotZero
+74 	//GOTO :Loop
+28   	//Pop AC
+14   	//CopyToX
+28   	//Pop AC
+24   	//Return
+27   	//Push AC 	//:Print new line
+1 	//Load '\n'
+10
+9
+2 	//Print '\n'
+28   	//PopAC
+24   	//Return
+
+.1000
+30 	//Empty interrupt handler

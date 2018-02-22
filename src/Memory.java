@@ -29,7 +29,7 @@ public class Memory {
                     count = Integer.parseInt(line.replace('.', ' ').split("//")[0].trim());
                     continue;
                 }
-                String parseVal = line.split("//")[0].trim();
+                String parseVal = line.split(" ")[0].trim();
                 if (!parseVal.isEmpty()) {
                     Integer command = Integer.parseInt(parseVal);
                     this.memoryArr[count++] = command;
